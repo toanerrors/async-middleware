@@ -1,0 +1,28 @@
+{
+  "name": "async-middleware",
+  "version": "1.0.0",
+  "description": "Async middleware for Express",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/expressjs/async-middleware.git"
+  },
+  "keywords": [
+    "express",
+    "middleware",
+    "async"
+  ],
+  "author": "errors @toanerrors",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
