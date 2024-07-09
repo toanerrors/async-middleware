@@ -61,6 +61,25 @@ app.listen(3000, () => {
 });
 ```
 
+using with express.Router
+
+````ts
+import express from "express";
+import { asyncMiddleware } from "@toanerrors/async-middleware";
+
+const router = express.Router();
+
+asyncMiddleware(router);
+
+router.get("/", async (req, res) => {
+  // Your asynchronous code here
+  throw new Error("Something went wrong");
+});
+
+router.listen(3000, () => {
+  console.log("Server is running on port 3000");
+})
+
 ## Configuration
 
 The asyncMiddleware function accepts an optional configuration object that allows you to specify which HTTP methods should be enhanced with asynchronous support. By default, it supports the following methods: get, post, put, delete, and patch.
@@ -85,7 +104,7 @@ app.post("/data", async (req, res) => {
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
-```
+````
 
 ## Examples
 
