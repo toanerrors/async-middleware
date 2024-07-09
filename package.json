@@ -1,6 +1,6 @@
 {
   "name": "@toanerrors/async-middleware",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Async middleware for Express",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
