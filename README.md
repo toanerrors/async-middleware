@@ -63,7 +63,7 @@ app.listen(3000, () => {
 
 using with express.Router
 
-````ts
+```ts
 import express from "express";
 import { asyncMiddleware } from "@toanerrors/async-middleware";
 
@@ -78,7 +78,8 @@ router.get("/", async (req, res) => {
 
 router.listen(3000, () => {
   console.log("Server is running on port 3000");
-})
+});
+```
 
 ## Configuration
 
@@ -104,7 +105,7 @@ app.post("/data", async (req, res) => {
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
-````
+```
 
 ## Examples
 
