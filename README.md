@@ -45,13 +45,21 @@ import express from "express";
 import { asyncMiddleware } from "@toanerrors/async-middleware";
 
 const app = express();
+
+// Apply asyncMiddleware
 asyncMiddleware(app);
+
+// If you have routes that need to be enhanced with asyncMiddleware
+const router = express.Router();
+// Apply asyncMiddleware to the router
+asyncMiddleware(router);
 
 app.get("/", async (req, res) => {
   // Your asynchronous code here
   throw new Error("Something went wrong");
 });
 
+// Error-handling declare once
 app.use((err, req, res, next) => {
   res.status(500).send(err.message);
 });
@@ -76,9 +84,9 @@ router.get("/", async (req, res) => {
   throw new Error("Something went wrong");
 });
 
-router.listen(3000, () => {
-  console.log("Server is running on port 3000");
-});
+// If you have already defined an error-handling function in the main file, you do not need to define it within the router.
+
+export default router;
 ```
 
 ## Configuration
@@ -102,6 +110,10 @@ app.post("/data", async (req, res) => {
   res.send("Data received");
 });
 
+app.use((err, req, res, next) => {
+  res.status(500).send(err.message);
+});
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
@@ -110,8 +122,10 @@ app.listen(3000, () => {
 ## Examples
 
 ```ts
+// file: index.ts
 import express from "express";
 import { asyncMiddleware } from "@toanerrors/async-middleware";
+import router from "./router";
 
 const app = express();
 asyncMiddleware(app);
@@ -120,6 +134,8 @@ app.get("/error", async (req, res) => {
   throw new Error("Test error");
 });
 
+app.use("/router", router);
+
 app.use((err, req, res, next) => {
   res.status(500).send(err.message);
 });
@@ -127,6 +143,22 @@ app.use((err, req, res, next) => {
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
+```
+
+```ts
+// file: router.ts
+import express from "express";
+import { asyncMiddleware } from "@toanerrors/async-middleware";
+
+const router = express.Router();
+
+asyncMiddleware(router);
+
+router.get("/error", async (req, res) => {
+  throw new Error("Test error");
+});
+
+export default router;
 ```
 
 Using with Multiple Handlers
@@ -148,6 +180,10 @@ const secondHandler = async (req, res) => {
 };
 
 app.get("/", firstHandler, secondHandler);
+
+app.use((err, req, res, next) => {
+  res.status(500).send(err.message);
+});
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
