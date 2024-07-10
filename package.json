@@ -1,6 +1,6 @@
 {
   "name": "@toanerrors/async-middleware",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Async middleware for Express",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Toan-Errors/async-middleware.git"
+    "url": "git@github.com:toanerrors/async-middleware.git"
   },
   "publishConfig": {
     "access": "public"
